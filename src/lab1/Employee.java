@@ -11,18 +11,26 @@ import java.util.Date;
  * @version     1.01
  */
 public class Employee {
-    String firstName;
-    String lastName;
-    public String ssn;
-    public Date birthDate;
-    boolean metWithHr;
-    boolean metDeptStaff;
-    boolean reviewedDeptPolicies;
-    boolean movedIn;
-    String cubeId;
+    private String firstName;
+    private String lastName;
+    private String ssn;
+    private Date birthDate;
+    private boolean metWithHr;
+    private boolean metDeptStaff;
+    private boolean reviewedDeptPolicies;
+    private boolean movedIn;
+    private String cubeId;
 
     public Employee() {
 
+    }
+    
+    public void hireEmployee(String cubeId){
+        meetWithHrForBenefitAndSalryInfo();
+        meetDepartmentStaff();
+        reviewDeptPolicies();
+        moveIntoCubicle(cubeId);
+        getStatus();    
     }
 
     // Assume this must be performed first
@@ -41,7 +49,7 @@ public class Employee {
     }
 
     // Assume this must be performed third
-    public void reviewDeptPolicies() {
+    private void reviewDeptPolicies() {
         if(metWithHr && metDeptStaff) {
             reviewedDeptPolicies = true;
         } else {
@@ -52,7 +60,7 @@ public class Employee {
     }
 
     // Assume this must be performed 4th
-    public void moveIntoCubicle(String cubeId) {
+    private void moveIntoCubicle(String cubeId) {
         if(metWithHr && metDeptStaff && reviewedDeptPolicies) {
             this.cubeId = cubeId;
             this.movedIn = true;
@@ -65,7 +73,7 @@ public class Employee {
 
     }
 
-    public String getStatus() {
+    private String getStatus() {
         if(metWithHr && metDeptStaff
            && reviewedDeptPolicies && movedIn) {
             return "Orientation is complete";
@@ -73,4 +81,5 @@ public class Employee {
             return "Orientation in progress...";
         }
     }
+  
 }
